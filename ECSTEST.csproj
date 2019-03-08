@@ -44,6 +44,7 @@
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentList.cs" />
     <Compile Include="Components\DrawComponent.cs" />
+    <Compile Include="Components\FollowMouseComponent.cs" />
     <Compile Include="Entitys\Entity.cs" />
     <Compile Include="Entitys\EntityList.cs" />
     <Compile Include="Game1.cs" />

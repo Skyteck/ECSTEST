@@ -25,6 +25,8 @@ namespace ECSTEST.Scenes
             //_Content.RootDirectory = @"/Scenes/TestScene1";
             var tgTex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
             Components.DrawComponent dc = new Components.DrawComponent(tgTex);
+            Components.FollowMouseComponent fmc = new Components.FollowMouseComponent();
+            TestGuy.AddComponent(fmc);
             TestGuy.AddComponent(dc);
             _Entities.AddEntity(TestGuy);
         }
