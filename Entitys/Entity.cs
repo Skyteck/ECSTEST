@@ -15,8 +15,10 @@ namespace ECSTEST.Entitys
         public bool _Active { get; set; } = true;
         public bool _Visible { get; set; } = true;
         public Vector2 _Position { get; private set; }
+        public Vector2 _Size { get; set; }
         public Scene _Scene { get; set; }
         public ComponentList _Components { get; private set; } 
+        public string _Tag { get; private set; }
 
         public Entity(Vector2 position)
         {
@@ -63,6 +65,11 @@ namespace ECSTEST.Entitys
         public void RemoveComponent(Component c)
         {
             _Components.RemoveComponent(c);
+        }
+
+        public void SetTag(string t)
+        {
+            _Tag = t;
         }
     }
 }

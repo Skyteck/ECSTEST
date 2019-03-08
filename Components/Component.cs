@@ -29,7 +29,7 @@ namespace ECSTEST.Components
             }
         }
 
-        public void AddedTo(Entity entity)
+        public virtual void AddedTo(Entity entity)
         {
             _Entity = entity;
         }

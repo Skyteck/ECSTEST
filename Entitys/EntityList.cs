@@ -100,5 +100,17 @@ namespace ECSTEST.Entitys
                 }
             }
         }
+
+        public Entity GetEntityByTag(string t)
+        {
+            foreach(Entity e in _Entities)
+            {
+                if(e._Tag == t)
+                {
+                    return e;
+                }
+            }
+            return null;
+        }
     }
 }
