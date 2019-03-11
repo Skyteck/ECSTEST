@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ECSTEST.Components
 {
-    class TransformComponent : Component
+    public class TransformComponent : Component
     {
         Vector2 Position;
         Vector2 Scale;

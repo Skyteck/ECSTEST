@@ -121,7 +121,7 @@ namespace ECSTEST.Entitys
             {
                 if (c._Tag == entityName)
                 {
-                    return c._Components.Get<T>();
+                    return c._Components.GetComponent<T>();
                 }
             }
             return null;

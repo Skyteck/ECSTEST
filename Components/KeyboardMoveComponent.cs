@@ -8,10 +8,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ECSTEST.Components
 {
-    class KeyboardMoveComponent : Component
+    public class KeyboardMoveComponent : Component
     {
         public float Speed;
-
+        
         public KeyboardMoveComponent(float speed)
         {
             Speed = speed;
