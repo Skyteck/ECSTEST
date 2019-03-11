@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ECSTEST.Scenes;
+using ECSTEST.Components;
+
 namespace ECSTEST.Entitys
 {
     public class EntityList
@@ -108,6 +110,18 @@ namespace ECSTEST.Entitys
                 if(e._Tag == t)
                 {
                     return e;
+                }
+            }
+            return null;
+        }
+
+        public T GetEntityComponentByTag<T>(string entityName) where T : Component
+        {
+            foreach (Entity c in _Entities)
+            {
+                if (c._Tag == entityName)
+                {
+                    return c._Components.Get<T>();
                 }
             }
             return null;

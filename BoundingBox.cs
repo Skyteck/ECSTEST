@@ -88,7 +88,6 @@ namespace ECSTEST
         {
             if(_Left < OtherBB._Right && _Right > OtherBB._Left && _Top < OtherBB._Bottom && _Bottom > OtherBB._Top)
             {
-                Console.WriteLine("Collision!!!!");
                 return true;
             }
             else
