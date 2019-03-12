@@ -45,22 +45,6 @@ namespace ECSTEST.Components
 
         public void AddComponent(Component c)
         {
-            RequireComponentAttribute testatt = c.GetType().GetCustomAttributes(typeof(RequireComponentAttribute), true).FirstOrDefault() as RequireComponentAttribute;
-
-            if(testatt != null)
-            {
-                Component blah = testatt._Component;
-                var neededComponent = _Entity._Components.GetComponent<blah>();
-                if(neededComponent != null)
-                {
-                    Console.WriteLine("Entity has component needed.");
-                }
-                else
-                {
-
-                }
-            }
-
             _toAdd.Add(c);
         }
 
@@ -103,6 +87,19 @@ namespace ECSTEST.Components
                 }
             }
             return null;
+        }
+
+        public bool HasComponent<T>() where T : Component
+        {
+            foreach (Component c in _Components)
+            {
+                if (c is T)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public IEnumerable<T> GetAll<T>() where T : Component

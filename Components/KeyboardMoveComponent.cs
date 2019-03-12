@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ECSTEST.Entitys;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,7 +12,12 @@ namespace ECSTEST.Components
     public class KeyboardMoveComponent : Component
     {
         public float Speed;
-        
+
+        public KeyboardMoveComponent() : base()
+        {
+            RequiredComponents.Add(typeof(TransformComponent));
+        }
+
         public KeyboardMoveComponent(float speed)
         {
             Speed = speed;

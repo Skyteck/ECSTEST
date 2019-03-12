@@ -24,12 +24,10 @@ namespace ECSTEST.Scenes
             PlayerTest TestGuy = new PlayerTest();
             //_Content.RootDirectory = @"/Scenes/TestScene1";
             var tgTex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
-            DrawComponent dc = new DrawComponent(tgTex);
             
-            CollisionComponent cc = new CollisionComponent();
-            TestGuy.AddComponent(cc);
+            TestGuy.AddComponent(new CollisionComponent());
             TestGuy.AddComponent(new KeyboardMoveComponent(200));
-            TestGuy.AddComponent(dc);
+            TestGuy.AddComponent(new DrawComponent(tgTex));
             TestGuy._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             TestGuy.SetTag("Player");
             _Entities.AddEntity(TestGuy);
@@ -37,10 +35,8 @@ namespace ECSTEST.Scenes
 
             PlayerTest TestGuy2 = new PlayerTest();
             TestGuy2.SetPosition(new Vector2(200, 200));
-            DrawComponent dc2 = new DrawComponent(tgTex);
-            CollisionComponent cc2 = new CollisionComponent();
-            TestGuy2.AddComponent(cc2);
-            TestGuy2.AddComponent(dc2);
+            TestGuy2.AddComponent(new CollisionComponent());
+            TestGuy2.AddComponent(new DrawComponent(tgTex));
             TestGuy2._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             TestGuy2.SetTag("Other");
             _Entities.AddEntity(TestGuy2);

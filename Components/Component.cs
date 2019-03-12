@@ -14,11 +14,11 @@ namespace ECSTEST.Components
         public bool Active { get; internal set; } = true;
         public Entity _Entity { get; private set; }
 
-        public List<Component> RequiredComponents { get; private set; }
+        public List<Type> RequiredComponents { get; private set; }
 
         public Component()
         {
-            RequiredComponents = new List<Component>();
+            RequiredComponents = new List<Type>();
         }
 
         public Scene _Scene

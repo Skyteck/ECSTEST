@@ -47,8 +47,9 @@
     <Compile Include="Components\ComponentList.cs" />
     <Compile Include="Components\DrawComponent.cs" />
     <Compile Include="Components\FollowMouseComponent.cs" />
+    <Compile Include="Components\GatherableComponent.cs" />
+    <Compile Include="Components\InteractComponent.cs" />
     <Compile Include="Components\KeyboardMoveComponent.cs" />
-    <Compile Include="Components\RequireComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Entitys\Entity.cs" />
     <Compile Include="Entitys\EntityList.cs" />
