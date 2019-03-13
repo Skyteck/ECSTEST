@@ -84,7 +84,7 @@ namespace ECSTEST
             _Height = height;
         }
 
-        public bool CheckCollision(BoundingBox OtherBB)
+        public bool Intersects(BoundingBox OtherBB)
         {
             if(_Left < OtherBB._Right && _Right > OtherBB._Left && _Top < OtherBB._Bottom && _Bottom > OtherBB._Top)
             {

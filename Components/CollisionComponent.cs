@@ -10,7 +10,7 @@ namespace ECSTEST.Components
     class CollisionComponent : Component
     {
         public BoundingBox _BoundingBox { get; private set; }
-
+        
         public CollisionComponent()
         {
 

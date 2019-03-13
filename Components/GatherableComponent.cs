@@ -10,8 +10,8 @@ namespace ECSTEST.Components
     class GatherableComponent : Component
     {
         public float difficulty { get; private set; }
-        public float respawnTime { get; private set; }
-
+        public float respawnTime { get; set; }
+        public float countdowntoRespawn { get; private set; }
         CollisionComponent CollisionComponent;
         public override void AddedTo(Entity entity)
         {
@@ -29,7 +29,23 @@ namespace ECSTEST.Components
         public override void Update()
         {
             base.Update();
+            if(countdowntoRespawn > 0f)
+            {
+                countdowntoRespawn -= Game1.DeltaTime;
+                if(countdowntoRespawn <= 0f)
+                {
+                    _Entity._Visible = true;
+                    CollisionComponent.Active = true;
 
+                }
+            }
+        }
+
+        public void GetGathered()
+        {
+            _Entity._Visible = false;
+            CollisionComponent.Active = false;
+            countdowntoRespawn = respawnTime;
         }
 
     }
