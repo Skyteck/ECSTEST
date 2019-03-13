@@ -60,6 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\SceneManager.cs" />
+    <Compile Include="Scenes\TestScene1\Enums\Enums.cs" />
+    <Compile Include="Scenes\TestScene1\GameObjects\Item.cs" />
+    <Compile Include="Scenes\TestScene1\GameObjects\Items.cs" />
+    <Compile Include="Scenes\TestScene1\Managers\InventoryManager.cs" />
     <Compile Include="Scenes\TestScene1\PlayerTest.cs" />
     <Compile Include="Scenes\TestScene1\TestScene1.cs" />
   </ItemGroup>

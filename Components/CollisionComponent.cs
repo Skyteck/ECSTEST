@@ -9,7 +9,7 @@ namespace ECSTEST.Components
 {
     class CollisionComponent : Component
     {
-        public BoundingBox _BoundingBox { get; private set; }
+        BoundingBox _BoundingBox { get; set; }
         
         public CollisionComponent()
         {
@@ -20,6 +20,12 @@ namespace ECSTEST.Components
         {
             base.AddedTo(entity);
             _BoundingBox = new BoundingBox(entity._Position, entity._Size.X, entity._Size.Y);
+        }
+
+        public bool Intersects(CollisionComponent bb)
+        {
+            if (!Active || !bb.Active) return false;
+            return _BoundingBox.Intersects(bb._BoundingBox);
         }
 
         public override void Update()

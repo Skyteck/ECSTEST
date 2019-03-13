@@ -8,11 +8,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ECSTEST.Components;
+using ECSTEST.Scenes.TestScene1.Managers;
+using ECSTEST.Scenes.TestScene1.Enums;
 
 namespace ECSTEST.Scenes
 {
     public class TestScene1Scene : Scene
     {
+        CollisionComponent playerBox;
+        InventoryManager _InventoryManager = new InventoryManager();
+
         public TestScene1Scene(ContentManager contentManager, SceneManager sceneManager) : base(contentManager, sceneManager)
         {
             this._Name = "Test Scene 1";
@@ -33,9 +38,13 @@ namespace ECSTEST.Scenes
             TestGuy.SetTag("Player");
             _Entities.AddEntity(TestGuy);
 
+            //playerBox = TestGuy._Components.GetComponent<CollisionComponent>()._BoundingBox;
+
             Entitys.Entity TestGuy2 = new Entitys.Entity();
             TestGuy2.SetPosition(new Vector2(200, 200));
-            TestGuy2.AddComponent(new CollisionComponent());
+
+            CollisionComponent playerCollision = new CollisionComponent();
+            TestGuy2.AddComponent(playerCollision);
             TestGuy2.AddComponent(new DrawComponent(tgTex));
             TestGuy2._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             TestGuy2.SetTag("Other");
@@ -49,17 +58,28 @@ namespace ECSTEST.Scenes
             plantTest._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             plantTest.SetTag("TestPlant");
             _Entities.AddEntity(plantTest);
+
+
+            _Entities.FinishComponentsSetup();
+
+            
         }
 
         public override void Update()
         {
             base.Update();
-            var playerbox = _Entities.GetEntityComponentByTag<CollisionComponent>("Player")._BoundingBox;
-            var plantBox = _Entities.GetEntityComponentByTag<CollisionComponent>("TestPlant")._BoundingBox;
+            if(playerBox == null)
+            {
+                playerBox = _Entities.GetEntityComponentByTag<CollisionComponent>("Player");
+            }
+            var plantBox = _Entities.GetEntityComponentByTag<CollisionComponent>("TestPlant");
 
-            if(playerbox.Intersects(plantBox))
+            if(playerBox.Intersects(plantBox))
             {
                 _Entities.GetEntityComponentByTag<GatherableComponent>("TestPlant").GetGathered();
+                _InventoryManager.AddItem<TestScene1.GameObjects.Log>(2);
+                _InventoryManager.ListItems();
+                //Console.WriteLine("dd");
             }
         }
     }

@@ -46,6 +46,11 @@ namespace ECSTEST.Entitys
             }
         }
 
+        public void FinishComponentsSetup()
+        {
+            UpdateLists();
+        }
+
         public void AddEntity(Entity c)
         {
             _ToAdd.Add(c);
