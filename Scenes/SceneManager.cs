@@ -14,10 +14,11 @@ namespace ECSTEST.Scenes
         public Scene _ActiveScene { get; private set; }
         public Scene _PreviousScene { get; private set; }
         public GameWindow _Window { get; }
-
-        public SceneManager(GameWindow window)
+        public GraphicsDevice GraphicsDevice { get; }
+        public SceneManager(GameWindow window, GraphicsDevice graphicsDevice)
         {
             _Window = window;
+            GraphicsDevice = graphicsDevice;
         }
 
         public Scene GetActiveScene()

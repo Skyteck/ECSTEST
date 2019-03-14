@@ -43,7 +43,7 @@ namespace ECSTEST
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _SceneManager = new SceneManager(this.Window);
+            _SceneManager = new SceneManager(this.Window, GraphicsDevice);
 
             Scenes.TestScene1Scene ts1c = new Scenes.TestScene1Scene(Content, _SceneManager);
             //ts1c.LoadContent();

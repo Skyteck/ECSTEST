@@ -120,6 +120,17 @@ namespace ECSTEST.Entitys
             return null;
         }
 
+        public IEnumerable<Entity> GetAllEntitysByTag(string tag)
+        {
+            foreach(Entity e in _Entities)
+            {
+                if(e._Tag == tag)
+                {
+                    yield return e;
+                }
+            }
+        }
+
         public T GetEntityComponentByTag<T>(string entityName) where T : Component
         {
             foreach (Entity c in _Entities)
