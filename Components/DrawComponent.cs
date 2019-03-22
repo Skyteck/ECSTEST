@@ -9,9 +9,9 @@ namespace ECSTEST.Components
         public bool Visible { get; internal set; } = true;
         public Vector2 _Offset { get; set; } = Vector2.Zero;
 
-        public DrawComponent(Texture2D tex)
-        {
-            _Texture = tex;
+        public DrawComponent()
+        { 
+        
         }
 
         public Vector2 _DrawPosition
@@ -22,7 +22,20 @@ namespace ECSTEST.Components
             }
         }
 
-        public Texture2D _Texture;
+        public Texture2D _Texture
+        {
+            get
+            {
+                if(_Entity.Texture != null)
+                {
+                    return _Entity.Texture;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         public override void Draw(SpriteBatch sb)
         {

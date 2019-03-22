@@ -46,6 +46,7 @@
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentList.cs" />
     <Compile Include="Components\DrawComponent.cs" />
+    <Compile Include="Components\DropsComponent.cs" />
     <Compile Include="Components\FollowMouseComponent.cs" />
     <Compile Include="Components\GatherableComponent.cs" />
     <Compile Include="Components\InteractComponent.cs" />

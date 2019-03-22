@@ -19,6 +19,7 @@ namespace ECSTEST.Entitys
         public Scene _Scene { get; set; }
         public ComponentList _Components { get; private set; } 
         public string _Tag { get; private set; }
+        public Texture2D Texture { get; internal set; }
 
         public Entity(Vector2 position)
         {
@@ -35,6 +36,11 @@ namespace ECSTEST.Entitys
         {
             _Position = pos;
             _Visible = true;
+        }
+
+        public void SetTexture(Texture2D tex)
+        {
+            Texture = tex;
         }
 
         public virtual void Update()

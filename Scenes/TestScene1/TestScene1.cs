@@ -12,7 +12,9 @@ using ECSTEST.Scenes.TestScene1.Managers;
 using ECSTEST.Scenes.TestScene1.Enums;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Graphics;
-
+using ECSTEST.Scenes.TestScene1.Entitys;
+using ECSTEST.Entitys;
+using ECSTEST.Scenes.TestScene1.GameObjects;
 namespace ECSTEST.Scenes
 {
     public class TestScene1Scene : Scene
@@ -21,7 +23,6 @@ namespace ECSTEST.Scenes
         InventoryManager _InventoryManager = new InventoryManager();
         private TiledMap map;
         private TiledMapRenderer mapRenderer;
-        Texture2D tgTex;
         public TestScene1Scene(ContentManager contentManager, SceneManager sceneManager) : base(contentManager, sceneManager)
         {
             this._Name = "Test Scene 1";
@@ -34,11 +35,12 @@ namespace ECSTEST.Scenes
 
             Entitys.Entity TestGuy = new Entitys.Entity();
             //_Content.RootDirectory = @"/Scenes/TestScene1";
-            tgTex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
+            Texture2D tgTex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
             map = _Content.Load<TiledMap>(@"TestScene1\TileMaps\Map1");
             TestGuy.AddComponent(new CollisionComponent());
             TestGuy.AddComponent(new KeyboardMoveComponent(200));
-            TestGuy.AddComponent(new DrawComponent(tgTex));
+            TestGuy.AddComponent(new DrawComponent());
+            TestGuy.SetTexture(tgTex);
             TestGuy._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             TestGuy.SetTag("Player");
             TiledMapObjectLayer hmm = map.ObjectLayers.Where(x => x.Name == "Object Layer 1").First();
@@ -47,17 +49,6 @@ namespace ECSTEST.Scenes
             TestGuy.SetPosition(hmm3);
             _Entities.AddEntity(TestGuy);
 
-            //playerBox = TestGuy._Components.GetComponent<CollisionComponent>()._BoundingBox;
-
-            Entitys.Entity TestGuy2 = new Entitys.Entity();
-            TestGuy2.SetPosition(new Vector2(200, 200));
-
-            CollisionComponent playerCollision = new CollisionComponent();
-            TestGuy2.AddComponent(playerCollision);
-            TestGuy2.AddComponent(new DrawComponent(tgTex));
-            TestGuy2._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
-            TestGuy2.SetTag("Other");
-            _Entities.AddEntity(TestGuy2);
 
             LoadMapObjects(map);
 
@@ -75,16 +66,13 @@ namespace ECSTEST.Scenes
                 {
                     foreach(TiledMapObject obj in layer.Objects)
                     {
-                        Entitys.Entity newe = new Entitys.Entity(obj.Position);
-
                         if(obj.Type == "Tree")
                         {
-                            newe.AddComponent(new CollisionComponent());
-                            newe.AddComponent(new GatherableComponent { respawnTime = 5f });
-                            newe.AddComponent(new DrawComponent(tgTex));
+                            Texture2D tex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
+                            Entity newe = _Entities.CreateEntityAndReturn<Tree>(tex, obj.Position);
                             newe.SetTag(obj.Name);
-                            newe.SetPosition(obj.Position);
-                            newe._Size = new Vector2(tgTex.Width, tgTex.Height);
+                            newe._Size = new Vector2(tex.Width, tex.Height);
+                            newe.SetTexture(tex);
                             _Entities.AddEntity(newe);
                         }
                     }
@@ -109,6 +97,7 @@ namespace ECSTEST.Scenes
                     if(e._Components.GetComponent<CollisionComponent>().Intersects(playerBox))
                     {
                         e._Components.GetComponent<GatherableComponent>().GetGathered();
+                        _InventoryManager.AddItem<Log>();
                         _InventoryManager.ListItems();
                     }
                 }

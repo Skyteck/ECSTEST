@@ -27,6 +27,7 @@ namespace ECSTEST.Scenes.TestScene1.GameObjects
             this._Weight = 1;
             this._SaleValue = 1;
             this._Name = "Log";
+            this.Stackable = true;
         }
     }
 

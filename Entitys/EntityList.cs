@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ECSTEST.Scenes;
 using ECSTEST.Components;
+using Microsoft.Xna.Framework;
 
 namespace ECSTEST.Entitys
 {
@@ -129,6 +130,22 @@ namespace ECSTEST.Entitys
                     yield return e;
                 }
             }
+        }
+
+        internal void CreateEntity<T>(Texture2D tex, Vector2 position) where T : Entity, new()
+        {
+            T thing = new T();
+            thing.SetPosition(position);
+            AddEntity(thing);
+        }
+
+        internal T CreateEntityAndReturn<T>(Texture2D tex, Vector2 position) where T : Entity, new()
+        {
+            T thing = new T();
+            thing.SetPosition(position);
+            AddEntity(thing);
+            return thing;
+
         }
 
         public T GetEntityComponentByTag<T>(string entityName) where T : Component

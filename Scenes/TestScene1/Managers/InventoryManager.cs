@@ -28,10 +28,8 @@ namespace ECSTEST.Scenes.TestScene1.Managers
                     if(i.Stackable) // item is in list already and stackable
                     {
                         i.Amount += amt;
-                    }
-                    else//item in the list but the item doesn't stack
-                    {
-
+                        amt = 0;
+                        break;
                     }
                 }
             }
@@ -106,7 +104,7 @@ namespace ECSTEST.Scenes.TestScene1.Managers
         {
             foreach(Item i in Items)
             {
-                Console.WriteLine($"{i._Name}");
+                Console.WriteLine($"{i._Name} {i.Amount}");
             }
         }
     }
