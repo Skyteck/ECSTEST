@@ -14,7 +14,7 @@ namespace ECSTEST
         SpriteBatch spriteBatch;
         SceneManager _SceneManager;
         public static float DeltaTime;
-
+        public static Texture2D debugTex;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,6 +44,11 @@ namespace ECSTEST
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _SceneManager = new SceneManager(this.Window, GraphicsDevice);
+
+            debugTex = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            Color[] colors = new Color[1];
+            colors[0] = Color.Red;
+            debugTex.SetData(colors);
 
             Scenes.TestScene1Scene ts1c = new Scenes.TestScene1Scene(Content, _SceneManager);
             //ts1c.LoadContent();

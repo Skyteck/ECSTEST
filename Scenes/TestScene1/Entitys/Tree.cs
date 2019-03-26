@@ -12,7 +12,9 @@ namespace ECSTEST.Scenes.TestScene1.Entitys
     {
         public Tree()
         {
-            AddComponent(new CollisionComponent());
+            CollisionComponent cc = new CollisionComponent();
+            cc.SetDebugTex(Game1.debugTex);
+            AddComponent(cc);
             AddComponent(new GatherableComponent { respawnTime = 5f });
             AddComponent(new DrawComponent());
         }

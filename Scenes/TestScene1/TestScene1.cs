@@ -37,9 +37,16 @@ namespace ECSTEST.Scenes
             //_Content.RootDirectory = @"/Scenes/TestScene1";
             Texture2D tgTex = _Content.Load<Texture2D>(@"TestScene1\Art\TestGuy");
             map = _Content.Load<TiledMap>(@"TestScene1\TileMaps\Map1");
-            TestGuy.AddComponent(new CollisionComponent());
+            CollisionComponent playercollision = new CollisionComponent();
+
+
+
+            playercollision.SetDebugTex(Game1.debugTex);
+
+            TestGuy.AddComponent(playercollision);
             TestGuy.AddComponent(new KeyboardMoveComponent(200));
             TestGuy.AddComponent(new DrawComponent());
+
             TestGuy.SetTexture(tgTex);
             TestGuy._Size = new Vector2(tgTex.Bounds.Width, tgTex.Bounds.Height);
             TestGuy.SetTag("Player");
@@ -97,7 +104,20 @@ namespace ECSTEST.Scenes
                     if(e._Components.GetComponent<CollisionComponent>().Intersects(playerBox))
                     {
                         e._Components.GetComponent<GatherableComponent>().GetGathered();
-                        _InventoryManager.AddItem<Log>();
+
+                        Random ran = new Random();
+                        int n = ran.Next();
+
+                        if((n % 2) == 0)
+                        {
+                            _InventoryManager.AddItem<Log>();
+
+                        }
+                        else
+                        {
+                            _InventoryManager.AddItem<SlimeGoo>();
+                        }
+
                         _InventoryManager.ListItems();
                     }
                 }
@@ -106,8 +126,8 @@ namespace ECSTEST.Scenes
 
         public override void Draw(SpriteBatch sb, Rectangle b)
         {
-            base.Draw(sb, b);
             mapRenderer.Draw(map);
+            base.Draw(sb, b);
         }
     }
 }
